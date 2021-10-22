@@ -1,8 +1,8 @@
 """adds Book model
 
-Revision ID: 1f3cf07c71ec
+Revision ID: 147800769fb8
 Revises: 
-Create Date: 2021-10-21 20:54:12.733340
+Create Date: 2021-10-21 22:17:35.665494
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '1f3cf07c71ec'
+revision = '147800769fb8'
 down_revision = None
 branch_labels = None
 depends_on = None
