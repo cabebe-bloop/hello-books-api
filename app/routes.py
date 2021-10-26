@@ -28,6 +28,8 @@ def handle_books():
 @books_bp.route("/<book_id>", methods=["GET", "PUT", "DELETE"])
 def handle_book(book_id):
     book = Book.query.get(book_id)
+    if book is None:
+            return make_response("", 404)
 
     if request.method == "GET":
         return {
@@ -47,3 +49,17 @@ def handle_book(book_id):
         db.session.delete(book)
         db.session.commit()
         return make_response(f"Book #{book.id} successfully deleted")
+
+@books_bp.route("/limit/<amount>", methods=["GET"])
+def handle_limit(amount):
+    books = Book.query.limit(amount).all()
+    if books is None:
+        return make_response("", 404)
+    books_response = []
+    for book in books:
+        books_response.append({
+            "id": book.id,
+            "title": book.title,
+            "description": book.description
+        })
+    return jsonify(books_response)
